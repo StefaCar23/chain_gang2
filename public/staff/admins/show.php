@@ -41,6 +41,7 @@
                 <dt>Date</dt>
                 <dd> <?php echo h($admin->euro_date($admin->date)); ?> </dd>
             </dl>
+        
         </div> 
         
     </div>
