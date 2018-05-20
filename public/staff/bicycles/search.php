@@ -3,7 +3,7 @@
 
 <?php
     $current_page = $_GET['page'] ?? 1;
-    $per_page = 2;
+    $per_page = 8;
     $total_count = Bicycle::count_all();
     
     $pagination = new Pagination($current_page, $per_page, $total_count);
@@ -43,6 +43,35 @@
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </tr>
+ <?php 
+ $searchq = "";
+ $bicycles = [];
+                
+ if(isset($_POST['search'])){
+     $searchq = $_POST['search'];
+     $searchq = preg_replace("#[^0-9a-z]#i", "", $searchq);
+     
+     $sql = "SELECT * FROM bicycles WHERE brand LIKE '%$searchq%'";
+     //$sql .= " ";
+     
+     $bicycles = Bicycle::find_by_sql($sql);
+     
+ }                  
+                
+ if(isset($_POST['search1'])){
+     $searchq1 = $_POST['search1'];
+     $searchq1 = preg_replace("#[^0-9a-z]#i", "", $searchq1);
+     
+     $sql1 = "SELECT * FROM bicycles WHERE category LIKE '%$searchq1%'";
+     //$sql .= " ";
+     
+     $bicycles = Bicycle::find_by_sql($sql1);
+     
+ }                  
+                
+          
+ ?>
+  
             <?php foreach($bicycles as $bicycle){ ?>
             <tr>
                 
@@ -69,6 +98,26 @@
                 
         
         ?>
+        
+        
+        <div>  
+            
+            <p>Search by brand</p>
+            <form action="../bicycles/search.php" method="post">
+                <input type="text" name="search" placeholder="Search by brand" />
+                <input type="submit" value="Submit" />
+            </form>
+            <p>&nbsp</p>
+        </div>
+        <div>  
+            
+            <p>Search by category</p>
+            <form action="../bicycles/search.php" method="post">
+                <input type="text" name="search1" placeholder="Search by category" />
+                <input type="submit" value="Submit" />
+            </form>
+            <p>&nbsp</p>
+        </div>
         
         <div>
         
