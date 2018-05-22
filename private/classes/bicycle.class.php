@@ -3,7 +3,7 @@
 class Bicycle extends DatabaseObject {
 
   static protected $table_name = 'bicycles';
-  static protected $db_columns = ['id', 'brand', 'model', 'year', 'category', 'color', 'gender', 'price', 'weight_kg', 'condition_id', 'description'];
+  static protected $db_columns = ['id', 'brand', 'model', 'year', 'category', 'color', 'gender', 'price', 'weight_kg', 'condition_id', 'description', 'service1', 'price1', 'service2', 'price2'];
   
 
   public $id;
@@ -17,6 +17,10 @@ class Bicycle extends DatabaseObject {
   public $price;
   public $weight_kg;
   public $condition_id;
+  public $price1;
+  public $service1;
+  public $service2;
+  public $price2;
 
   const CATEGORIES = ['Road', 'Mountain', 'Hybrid', 'Cruiser', 'City', 'BMX'];
 
@@ -42,6 +46,10 @@ class Bicycle extends DatabaseObject {
     $this->price = $args['price'] ?? 0;
     $this->weight_kg = $args['weight_kg'] ?? 0.0;
     $this->condition_id = $args['condition_id'] ?? 3;
+    $this->service1 = $_POST['service1'] ?? '';
+    $this->price1 = $_POST['price1'] ?? '';
+    $this->service2 = $_POST['service2'] ?? '';
+    $this->price2 = $_POST['price2'] ?? '';
 
     // Caution: allows private/protected properties to be set
     // foreach($args as $k => $v) {
@@ -88,6 +96,10 @@ class Bicycle extends DatabaseObject {
       if(is_blank($this->model)){
           $this->errors[] = "Model cannot be blank!";
       }
+  }
+  
+  public function total(){
+      return $this->price1 + $this->price2 . ".00";
   }
 }
 

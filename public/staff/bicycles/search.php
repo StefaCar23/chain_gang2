@@ -61,8 +61,13 @@
  if(isset($_POST['search1'])){
      $searchq1 = $_POST['search1'];
      $searchq1 = preg_replace("#[^0-9a-z]#i", "", $searchq1);
+     $searchq2 = $_POST['search2'];
+     $searchq2 = preg_replace("#[^0-9a-z]#i", "", $searchq2);
      
-     $sql1 = "SELECT * FROM bicycles WHERE category LIKE '%$searchq1%'";
+     
+     $sql1 = "SELECT * FROM bicycles ";
+     $sql1 .= "WHERE category LIKE '%$searchq1%'";
+     $sql1 .= " AND gender LIKE '%$searchq2%'";
      //$sql .= " ";
      
      $bicycles = Bicycle::find_by_sql($sql1);
@@ -111,9 +116,10 @@
         </div>
         <div>  
             
-            <p>Search by category</p>
+            <p>Search by category and color</p>
             <form action="../bicycles/search.php" method="post">
                 <input type="text" name="search1" placeholder="Search by category" />
+                <input type="text" name="search2" placeholder="Search by gender" />
                 <input type="submit" value="Submit" />
             </form>
             <p>&nbsp</p>

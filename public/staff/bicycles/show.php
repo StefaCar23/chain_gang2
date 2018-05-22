@@ -58,6 +58,26 @@
             </dl>
         </div>
     </div>
+    <table class="list">
+        <tr>
+            <th>Service</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td><?php echo h($bicycle->service1); ?></td>
+            <td><?php echo h($bicycle->price1); ?></td>
+        </tr>
+        <?php if($bicycle->service2 != ""){ ?>
+        <tr>
+            <td><?php echo h($bicycle->service2); ?></td>
+            <td><?php echo h($bicycle->price2); ?></td>
+        </tr>
+        <?php } ?>
+        <tr>
+            <td><?php echo "Total: "; ?></td>
+            <td><?php echo h($bicycle->total()); ?></td>
+        </tr>
+    </table>
     
 </div>
 

@@ -75,3 +75,19 @@
 <dt>Description</dt>
 <dd><textarea name="bicycle[description]" rows="5" cols="50"><?php echo h($bicycle->description); ?></textarea> </dd>
 </dl>
+<dl>
+<dt>Service1</dt>
+    <dd><input type="text" name="bicycle[service1]" value="<?php echo h($bicycle->service1); ?>" /> </dd>
+</dl>
+<dl>
+<dt>Price1</dt>
+    <dd><input type="text" name="bicycle[price1]" value="<?php echo h($bicycle->price1); ?>" /> </dd>
+</dl>
+<dl>
+<dt>Service2</dt>
+    <dd><input type="text" name="bicycle[service2]" value="<?php echo h($bicycle->service2); ?>" /> </dd>
+</dl>
+<dl>
+<dt>Price2</dt>
+    <dd><input type="text" name="bicycle[price2]" value="<?php echo h($bicycle->price2); ?>" /> </dd>
+</dl>
