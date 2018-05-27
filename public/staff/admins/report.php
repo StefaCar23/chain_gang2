@@ -3,7 +3,7 @@
 
 <?php 
     
-    //$admins = Admin::find_all();
+  /*  //$admins = Admin::find_all();
  $current_page = $_GET['page'] ?? 1;
     $per_page = 7;
     $total_count = Admin::count_all();
@@ -15,6 +15,8 @@
     $sql .= "OFFSET {$pagination->offset()}";
     $admins = Admin::find_by_sql($sql);
 
+
+        */
     
     ?>
 
@@ -39,6 +41,30 @@
                 <th>&nbsp;</th>
             </tr>
             
+            <?php
+                
+            $searchq1 = "";
+            $searchq2 = "";
+            $admins = [];
+            
+            if(isset($_POST['search1']) && isset($_POST['search2'])){
+                $searchq1 = $_POST['search1'];
+                $searchq1 = preg_replace("#[0-9a-z]#i", "", $searchq1);
+                $searchq2 = $_POST['search2'];
+                $searchq2 = preg_replace("#[0-9a-z]#i", "", $searchq2);
+            
+              
+             
+                $sql1 = "SELECT * FROM admins WHERE date BETWEEN '$searchq1' and '$searchq2'";
+                $sql1 .= " ORDER BY date DESC";
+                
+                $admins = Admin::find_by_sql($sql1);
+                
+            }
+            
+            
+            ?>
+            
                 <?php foreach($admins as $admin){ ?>
             
             <tr>
@@ -56,9 +82,18 @@
         </table>
         
         <?php
-             $url = url_for('/staff/admins/index.php');
-             echo $pagination->page_links($url);
+             //$url = url_for('/staff/admins/index.php');
+             //echo $pagination->page_links($url);
                 ?>
+        
+        <br />
+        <p>Select admins by date </p>
+        <form action="../admins/report.php" method="post">
+            <input type="text" name="search1" placeholder="From date" />
+            <input type="text" name="search2" placeholder="To date" />
+            <input type="submit" value="Submit" />
+        </form>
+        
     </div>
 </div>
 
