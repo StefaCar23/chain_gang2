@@ -70,6 +70,28 @@
         
         ?>
         
+        <?php
+            $sql = "SELECT SUM(price1) AS Total FROM bicycles";
+            $result = $database->query($sql);
+            
+           //print_r($result);
+            $num = $result->fetch_assoc();
+            
+            //print_r($num);
+            foreach($num as $number){
+                echo "Total price is: " . $number . "euro";
+                  }
+        $kty = 0;
+       /* moze i uz opmoc while() petlje da se prikaze
+        while($num=$result->fetch_assoc()){
+            $kty += $num['Total'];
+        }
+        echo $kty;
+        * */
+        */
+            
+        ?>
+        
         <div>
         
         
