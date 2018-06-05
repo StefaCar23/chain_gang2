@@ -87,7 +87,6 @@
             $kty += $num['Total'];
         }
         echo $kty;
-        * */
         */
             
         ?>
